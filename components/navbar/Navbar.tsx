@@ -4,6 +4,29 @@ import Button from "../button/Button";
 import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 
+const Links = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "About",
+    url: "/about",
+  },
+  {
+    name: "How it works",
+    url: "/how-it-works",
+  },
+  {
+    name: "Blog",
+    url: "/blog",
+  },
+  {
+    name: "Raise Funds",
+    url: "/raise-funds",
+  },
+];
+
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between py-8 px-10 md:px-20">
@@ -12,21 +35,11 @@ const Navbar = () => {
       </div>
       <div className="hidden md:block">
         <ul className="flex space-x-10">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/how-it-works">How it works</Link>
-          </li>
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link href="/raise-funds">Raise Funds</Link>
-          </li>
+          {Links.map((link, index) => (
+            <li key={index}>
+              <Link href={link.url}>{link.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="hidden md:block md:space-x-5">
