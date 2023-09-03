@@ -34,7 +34,7 @@ const Navbar = () => {
         <Button onClick={() => {}} label="Sign Up" />
       </div>
       <div className="block md:hidden">
-        <FiMenu size={20} />
+        <FiMenu size={30} />
       </div>
     </div>
   );
