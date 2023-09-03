@@ -37,7 +37,9 @@ const Navbar = () => {
         <ul className="flex space-x-10">
           {Links.map((link, index) => (
             <li key={index}>
-              <Link href={link.url}>{link.name}</Link>
+              <Link href={link.url} className="text-[#015E5F]">
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>
