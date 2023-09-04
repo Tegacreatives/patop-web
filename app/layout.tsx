@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import ToasterProvider from "./providers/ToasterProvider";
+
 const font = Montserrat({
   subsets: ["latin"],
 });
@@ -21,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToasterProvider />
         <Navbar />
         {children}
       </body>
