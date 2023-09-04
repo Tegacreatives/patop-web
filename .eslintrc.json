@@ -1,7 +1,7 @@
 {
   "extends": [
-    "next/core-web-vitals",
-    "plugin:testing-libray/react",
-    "plugin:jest-dom/recommended"
+    "next/core-web-vitals"
+    // "plugin:testing-libray/react",
+    // "plugin:jest-dom/recommended"
   ]
 }
