@@ -17,19 +17,19 @@ export const authOptions: AuthOptions = {
       },
 
       async authorize(credentials) {
-        //Checks if the user doesn't exist
+        //Checks if the user doesn't input complete credetials
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Invalid credentials");
         }
 
-        //Finds the user where the email is thesame as the inputed email
+        //Finds the user by email
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
           },
         });
 
-        //Checks if the login details are correct
+        //Checks if user exists or invalid login details
         if (!user || !user?.hashedPassword) {
           throw new Error("Invalid Credentials");
         }
@@ -52,4 +52,11 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/",
   },
+  debug: process.env.NODE_ENV === "development",
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
+
+export default NextAuth(authOptions);
