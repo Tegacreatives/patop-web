@@ -30,6 +30,7 @@ const Login = () => {
       setIsLoading(false);
       if (callback?.ok) {
         toast.success("Logged in Successfully");
+        router.refresh();
         router.push("/");
       }
       if (callback?.error) {

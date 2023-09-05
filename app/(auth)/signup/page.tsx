@@ -26,7 +26,7 @@ const SignUp = () => {
     setisLoading(true);
     axios
       .post("/api/register", data)
-      .then(() => router.push("/"))
+      .then(() => router.push("/login"))
       .catch((error) => {
         console.log(error);
       });
