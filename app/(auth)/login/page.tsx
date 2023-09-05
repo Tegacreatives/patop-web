@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -21,13 +22,15 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
     signIn("credentials", {
       ...data,
       redirect: false,
     }).then((callback) => {
+      setIsLoading(false);
       if (callback?.ok) {
         toast.success("Logged in Successfully");
-        router.refresh();
+        router.push("/");
       }
       if (callback?.error) {
         toast.error(callback.error);
@@ -82,8 +85,10 @@ const Login = () => {
               </Link>
               <div className="mt-6">
                 <button
-                  className="w-full text-sm px-4 py-4 tracking-wide text-white transition-colors duration-200
-                 transform bg-[#015E5F] rounded-md hover:bg-[#017A7A] focus:outline-none focus:bg-[#017A7A]"
+                  className={`w-full text-sm px-4 py-4 tracking-wide text-white transition-colors duration-200
+                 transform rounded-md hover:bg-[#017A7A] focus:outline-none focus:bg-[#017A7A]
+                 ${isLoading == true ? "bg-[#017A&A]" : "bg-[#015E5F]"}
+                 `}
                 >
                   Login
                 </button>
