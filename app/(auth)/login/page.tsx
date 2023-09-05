@@ -1,8 +1,39 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { signIn } from "next-auth/react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.ok) {
+        toast.success("Logged in Successfully");
+        router.refresh();
+      }
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
+  };
   return (
     <div className="md:flex md:h-[86vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-24">
@@ -11,17 +42,20 @@ const Login = () => {
             <h1 className="text-3xl font-semibold text-[#015E5F]">
               Welcome Back!
             </h1>
-            <form className="mt-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
               <div className="mb-4">
                 <label htmlFor="email" className="block text-base">
                   Email
                 </label>
                 <input
+                  {...register("email", { required: true })}
                   type="email"
                   placeholder="Enter your email"
                   required
-                  className="block w-full px-4 py-4 mt-2 bg-white text-sm border border-gray-400 rounded-md
-                   focus:border-[#015E5F] focus:outline-none"
+                  className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
+                   focus:border-[#015E5F] focus:outline-none
+                   ${errors.email ? "border-red-500" : "border-gray-400"}
+                   `}
                 />
               </div>
               <div className="mb-2">
@@ -29,12 +63,15 @@ const Login = () => {
                   Password
                 </label>
                 <input
+                  {...register("password", { required: true })}
                   type="password"
                   placeholder="Enter password"
                   required
                   hidden
-                  className="block w-full px-4 py-4 mt-2 bg-white border border-gray-400 text-sm rounded-md
-                   focus:border-[#015E5F] focus:outline-none"
+                  className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
+                   focus:border-[#015E5F] focus:outline-none
+                   ${errors.password ? "border-red-500" : "border-gray-400"}
+                   `}
                 />
               </div>
               <Link
