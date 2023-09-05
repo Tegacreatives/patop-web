@@ -4,6 +4,7 @@ import Button from "../button/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
+import { User } from "@prisma/client";
 
 const Links = [
   {
@@ -28,7 +29,11 @@ const Links = [
   },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  currentUser?: User | null;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
   return (
     <div className="flex items-center justify-between py-8 px-10 md:px-20">
@@ -49,8 +54,20 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="hidden md:block md:space-x-5">
-        <Button onClick={() => router.push("login")} outline label="Login" />
-        <Button onClick={() => router.push("signup")} label="Sign Up" />
+        {currentUser ? (
+          <h1 className="capitalize border border-[#015E5F] px-10  py-3 rounded text-[#015E5F] cursor-pointer">
+            {currentUser?.name ? currentUser.name : ""}
+          </h1>
+        ) : (
+          <>
+            <Button
+              onClick={() => router.push("login")}
+              outline
+              label="Login"
+            />
+            <Button onClick={() => router.push("signup")} label="Sign Up" />
+          </>
+        )}
       </div>
       <div className="block md:hidden">
         <FiMenu size={30} />

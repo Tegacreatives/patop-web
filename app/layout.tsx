@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 
 const font = Montserrat({
@@ -15,16 +16,17 @@ export const metadata: Metadata = {
     "Help students raise funds for their academnic projects and potential startups",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         {children}
       </body>
     </html>
