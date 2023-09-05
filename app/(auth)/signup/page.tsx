@@ -126,7 +126,7 @@ const SignUp = () => {
             <p className="mt-4 text-sm text-center text-gray-700">
               Got an account?{" "}
               <Link
-                href="/signup"
+                href="/login"
                 className="font-medium text-[#015E5F] hover:underline"
               >
                 Login Here
