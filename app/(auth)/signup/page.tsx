@@ -36,12 +36,12 @@ const SignUp = () => {
     setisLoading(false);
   };
 
-  // const { data: session } = useSession();
-  // useEffect(() => {
-  //   if (session?.user) {
-  //     router.push("/");
-  //   }
-  // }, [session, router]);
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session?.user) {
+      router.push("/");
+    }
+  }, []);
   return (
     <div className="md:flex md:h-[86vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-10">
