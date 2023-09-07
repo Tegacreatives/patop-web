@@ -5,6 +5,9 @@ import { Montserrat } from "next/font/google";
 
 import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
+import Provider from "./context/client-provider";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -21,13 +24,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
   const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
         <Navbar currentUser={currentUser} />
-        {children}
+        <Provider session={session}>{children}</Provider>
       </body>
     </html>
   );
