@@ -36,10 +36,6 @@ const SignUp = () => {
     setisLoading(false);
   };
 
-  const googleSignIn = async () => {
-    signIn("google");
-  };
-
   const { data: session } = useSession();
   useEffect(() => {
     if (session?.user) {
@@ -125,7 +121,7 @@ const SignUp = () => {
             </div>
             <div className="mt-4">
               <button
-                onClick={googleSignIn}
+                onClick={() => signIn("google")}
                 className=" flex items-center justify-center space-x-5 w-full text-sm px-4 py-4 tracking-wide
                  transition-colors duration-200 transform bg-white border border-gray-500 rounded-md focus:outline-none"
               >
