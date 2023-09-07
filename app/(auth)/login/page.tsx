@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -38,6 +38,13 @@ const Login = () => {
       }
     });
   };
+
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session?.user) {
+      router.push("/");
+    }
+  }, [session, router]);
   return (
     <div className="md:flex md:h-[86vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-24">
@@ -105,11 +112,13 @@ const Login = () => {
             </div>
             <div className="mt-4">
               <button
+                onClick={() => signIn("google")}
                 className=" flex items-center justify-center space-x-5 w-full text-sm px-4 py-4 tracking-wide transition-colors duration-200
                  transform bg-white border border-gray-500 rounded-md focus:outline-none"
               >
                 <Image
                   src="/assets/icons/google.png"
+                  sizes="100%"
                   width={25}
                   height={25}
                   alt="google-login"
