@@ -8,7 +8,6 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { data } from "autoprefixer";
 
 const SignUp = () => {
   const router = useRouter();
