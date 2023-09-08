@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useState } from "react";
-import Button from "../button/Button";
+import { Button } from "../button/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
