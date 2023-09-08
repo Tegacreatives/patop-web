@@ -1,16 +1,16 @@
 import React from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, UseFormRegister, useForm } from "react-hook-form";
 
 interface InputProps {
   id: string;
   label: string;
   placeholder: string;
   type?: string;
+  register: UseFormRegister<FieldValues>;
 }
 
-const Input = ({ id, label, placeholder, type }: InputProps) => {
+const Input = ({ id, label, placeholder, type, register }: InputProps) => {
   const {
-    register,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -32,7 +32,7 @@ const Input = ({ id, label, placeholder, type }: InputProps) => {
         required
         className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
                    focus:border-[#015E5F] focus:outline-none
-                   ${errors.id ? "border-red-500" : "border-gray-400"}
+                   ${errors[id] ? "border-red-500" : "border-gray-400"}
                    `}
       />
     </div>

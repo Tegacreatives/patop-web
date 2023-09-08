@@ -21,7 +21,7 @@ const Form = ({
   bottomLink,
   bottomLinkText,
 }: FormProps) => {
-  const { handleSubmit } = useForm<FieldValues>({
+  const { handleSubmit, register } = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
@@ -36,9 +36,20 @@ const Form = ({
         <div className="w-full lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-[#015E5F]">{title}</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-            <Input id="name" label="Name" placeholder="Enter your name" />
-            <Input id="email" label="Email" placeholder="Enter your email" />
             <Input
+              register={register}
+              id="name"
+              label="Name"
+              placeholder="Enter your name"
+            />
+            <Input
+              register={register}
+              id="email"
+              label="Email"
+              placeholder="Enter your email"
+            />
+            <Input
+              register={register}
               id="password"
               label="Password"
               type="password"

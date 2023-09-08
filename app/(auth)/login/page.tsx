@@ -6,6 +6,7 @@ import { signIn, useSession } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Input from "@/components/Inputs/Input";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,37 +55,19 @@ const Login = () => {
               Welcome Back!
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-base">
-                  Email
-                </label>
-                <input
-                  {...register("email", { required: true })}
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
-                   focus:border-[#015E5F] focus:outline-none
-                   ${errors.email ? "border-red-500" : "border-gray-400"}
-                   `}
-                />
-              </div>
-              <div className="mb-2">
-                <label htmlFor="password" className="block text-base">
-                  Password
-                </label>
-                <input
-                  {...register("password", { required: true })}
-                  type="password"
-                  placeholder="Enter password"
-                  required
-                  hidden
-                  className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
-                   focus:border-[#015E5F] focus:outline-none
-                   ${errors.password ? "border-red-500" : "border-gray-400"}
-                   `}
-                />
-              </div>
+              <Input
+                register={register}
+                id="email"
+                label="Email"
+                placeholder="Enter your email"
+              />
+              <Input
+                register={register}
+                id="password"
+                label="Password"
+                type="password"
+                placeholder="Enter password"
+              />
               <Link
                 href="/forget"
                 className="text-xs text-[#015E5F] hover:underline"

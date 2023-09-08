@@ -39,12 +39,12 @@ const SignUp = () => {
     setisLoading(false);
   };
 
-  // const { data: session } = useSession();
-  // useEffect(() => {
-  //   if (session?.user) {
-  //     router.push("/");
-  //   }
-  // }, []);
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session?.user) {
+      router.push("/");
+    }
+  }, []);
   return (
     <div className="md:flex md:h-[86vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-10">
@@ -54,9 +54,20 @@ const SignUp = () => {
               Welcome to Patop!
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-              <Input id="name" label="Name" placeholder="Enter your name" />
-              <Input id="email" label="Email" placeholder="Enter your email" />
               <Input
+                register={register}
+                id="name"
+                label="Name"
+                placeholder="Enter your name"
+              />
+              <Input
+                register={register}
+                id="email"
+                label="Email"
+                placeholder="Enter your email"
+              />
+              <Input
+                register={register}
                 id="password"
                 label="Password"
                 type="password"
@@ -64,7 +75,14 @@ const SignUp = () => {
               />
 
               <div className="mt-6">
-                <FormButton label="Register" />
+                <button
+                  className={`w-full text-sm px-4 py-4 tracking-wide text-white transition-colors duration-200
+                 transform rounded-md hover:bg-[#017A7A] focus:outline-none focus:bg-[#017A7A]
+                 ${isLoading == true ? "bg-[#017A&A]" : "bg-[#015E5F]"}
+                 `}
+                >
+                  Register
+                </button>
               </div>
             </form>
 
@@ -76,12 +94,19 @@ const SignUp = () => {
               <div className="flex-1 h-[1px] bg-gray-500"></div>
             </div>
             <div className="mt-4">
-              <FormButton
-                label="Sign up with Google"
-                iconSrc="/assets/icons/google.png"
+              <button
                 onClick={() => signIn("google")}
-                outline
-              />
+                className=" flex items-center justify-center space-x-5 w-full text-sm px-4 py-4 tracking-wide
+                 transition-colors duration-200 transform bg-white border border-gray-500 rounded-md focus:outline-none"
+              >
+                <Image
+                  src="/assets/icons/google.png"
+                  width={25}
+                  height={25}
+                  alt="google-login"
+                />
+                <p>Sign up with Google</p>
+              </button>
             </div>
             <p className="mt-4 text-sm text-center text-gray-700">
               Got an account?{" "}
