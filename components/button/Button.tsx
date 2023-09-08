@@ -4,7 +4,7 @@ import React from "react";
 interface ButtonProps {
   label: string;
   outline?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 interface FormButtonProps extends ButtonProps {

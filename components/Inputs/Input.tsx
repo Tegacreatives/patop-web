@@ -32,7 +32,7 @@ const Input = ({ id, label, placeholder, type }: InputProps) => {
         required
         className={`block w-full px-4 py-4 mt-2 bg-white border text-sm rounded-md
                    focus:border-[#015E5F] focus:outline-none
-                   ${errors.name ? "border-red-500" : "border-gray-400"}
+                   ${errors.id ? "border-red-500" : "border-gray-400"}
                    `}
       />
     </div>

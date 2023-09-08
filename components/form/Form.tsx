@@ -1,5 +1,4 @@
 import { signIn } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -22,13 +21,7 @@ const Form = ({
   bottomLink,
   bottomLinkText,
 }: FormProps) => {
-  const router = useRouter();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FieldValues>({
+  const { handleSubmit } = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
@@ -53,14 +46,7 @@ const Form = ({
             />
 
             <div className="mt-6">
-              <button
-                className={`w-full text-sm px-4 py-4 tracking-wide text-white transition-colors duration-200
-                 transform rounded-md hover:bg-[#017A7A] focus:outline-none focus:bg-[#017A7A]
-                 ${isLoading == true ? "bg-[#017A&A]" : "bg-[#015E5F]"}
-                 `}
-              >
-                Register
-              </button>
+              <FormButton label="Register" />
             </div>
           </form>
 
