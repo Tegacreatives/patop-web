@@ -5,6 +5,7 @@ interface ButtonProps {
   label: string;
   outline?: boolean;
   onClick?: () => void;
+  fixedButton?: boolean;
 }
 
 interface FormButtonProps extends ButtonProps {
@@ -12,15 +13,20 @@ interface FormButtonProps extends ButtonProps {
   isLoading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, outline, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+  label,
+  outline,
+  onClick,
+  fixedButton,
+}) => {
   return (
     <button
-      className={`border border-[#015E5F] px-10  py-3 rounded 
+      className={` px-10  py-3 rounded 
       ${
         outline
-          ? "bg-white text-[#015E5F]"
+          ? "bg-white text-[#015E5F] border border-[#015E5F]"
           : "bg-[#015E5F] text-white hover:bg-[#017A7A]"
-      }`}
+      } ${fixedButton && "border-white"}`}
       onClick={onClick}
     >
       {label}

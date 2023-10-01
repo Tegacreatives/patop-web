@@ -73,7 +73,6 @@ model Project {
   description   String?
   imageSrc      String
   goalAmount    Float
-  startDate     DateTime
   endDate       DateTime
   createdAt     DateTime       @default(now())
   category      String

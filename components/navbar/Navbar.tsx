@@ -1,8 +1,8 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button } from "../button/Button";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -36,16 +36,41 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [navFixed, setNavFixed] = useState(false);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const positionNavbar = () => {
+        window.pageYOffset > 0 ? setNavFixed(true) : setNavFixed(false);
+      };
+      window.addEventListener("scroll", positionNavbar);
+      return () => window.removeEventListener("scroll", positionNavbar);
+    } else {
+      setNavFixed(true);
+    }
+  }, [pathname]);
 
   //Toggles the navigation menu
   const toogleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
   return (
-    <div className="flex items-center justify-between py-8 px-10 md:px-20">
+    <div
+      className={`flex items-center justify-between py-6 px-10 md:px-20 top-0 z-30
+      w-full transition-all duration-300 ${
+        navFixed
+          ? " bg-white border-b border-gray-200"
+          : "absolute bg-transparent border-transparent"
+      }`}
+    >
       <div>
-        <h1 className="text-3xl font-bold text-[#015E5F]">
+        <h1
+          className={`text-3xl font-bold ${
+            navFixed ? "text-[#015E5F]" : "text-white"
+          }`}
+        >
           <Link href="/">Patop</Link>
         </h1>
       </div>
@@ -53,7 +78,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <ul className="flex space-x-10 font-medium text-base">
           {Links.map((link, index) => (
             <li key={index}>
-              <Link href={link.url} className="text-[#015E5F]">
+              <Link
+                href={link.url}
+                className={`${navFixed ? "text-[#015E5F]" : "text-white"}`}
+              >
                 {link.name}
               </Link>
             </li>
