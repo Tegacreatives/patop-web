@@ -75,7 +75,8 @@ function CreateGigs() {
   const onSubmit: SubmitHandler<IProjectInput> = (data) => {
     axios
       .post("/api/create", data)
-      .then(() => toast.success("Project successfully created"));
+      .then(() => toast.success("Project successfully created"))
+      .then(() => router.push("/my-campaigns"));
   };
 
   return (
