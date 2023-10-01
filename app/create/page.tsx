@@ -5,25 +5,24 @@ import { categories } from "../utils/categories";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useCookies } from "react-cookie";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FileUpload } from "@/components/fileUpload";
-import "@uploadthing/react/styles.css";
-import Image from "next/image";
+import { formatISO } from "date-fns";
+
 import toast from "react-hot-toast";
+
+const today = new Date();
 
 interface IProjectInput {
   title: string;
   description: string;
   imageSrc: string;
   goalAmount: number;
-  endDate: string;
+  endDate: Date;
   category: string;
 }
 
 function CreateGigs() {
-  const [files, setFile] = useState([]);
-  const [imageUrl, setImageUrl] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -36,12 +35,10 @@ function CreateGigs() {
       description: "",
       imageSrc: "",
       goalAmount: 60,
-      endDate: "",
+      endDate: today,
       category: "",
     },
   });
-
-  const [cookies] = useCookies();
   const router = useRouter();
   const inputClassName =
     "block p-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:ring-blue-500 focus:border-blue-500";
@@ -75,7 +72,7 @@ function CreateGigs() {
     }
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<IProjectInput> = (data) => {
     axios
       .post("/api/create", data)
       .then(() => toast.success("Project successfully created"));
@@ -121,6 +118,7 @@ function CreateGigs() {
             </select>
           </div>
         </div>
+        {/* Project Description */}
         <div>
           <label htmlFor="description" className={labelClassName}>
             Project Description
@@ -128,8 +126,8 @@ function CreateGigs() {
           <textarea
             id="description"
             {...register("description", { required: true })}
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Write a short description"
+            className="block p-2.5 w-full h-[15rem] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Let the world know about your project"
           ></textarea>
         </div>
         <div className="grid grid-cols-2 gap-11">
@@ -138,8 +136,9 @@ function CreateGigs() {
             <label htmlFor="delivery">Deadline</label>
             <input
               {...register("endDate", { required: true })}
-              type="number"
-              className={inputClassName}
+              type="date"
+              className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-300"
+              // className={inputClassName}
               placeholder="Deadline for the project"
             />
           </div>
@@ -174,7 +173,7 @@ function CreateGigs() {
               />
               <button
                 type="button"
-                className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800  font-medium  text-lg px-10 py-3 rounded-md "
+                className="focus:outline-none text-white bg-[#015E5F] hover:bg-blue-800  font-medium  text-lg px-10 py-3 rounded-md "
                 onClick={addFeature}
               >
                 Add
@@ -229,6 +228,7 @@ function CreateGigs() {
                       shouldValidate: true,
                       shouldDirty: true,
                     });
+                    toast.success("Image uploaded successfully");
                   }}
                 />
                 <div className="text-xs text-muted-foreground">
@@ -241,7 +241,7 @@ function CreateGigs() {
         <div>
           <input
             type="submit"
-            className="border text-lg font-semibold px-5 py-3 mb-20   border-[#1DBF73] bg-[#1DBF73] text-white rounded-md"
+            className="border text-lg font-semibold px-5 py-3 mb-20 bg-[#015E5F] text-white rounded-md"
           />
         </div>
       </form>

@@ -26,7 +26,7 @@ const Links = [
   },
   {
     name: "Raise Funds",
-    url: "/raise-funds",
+    url: "/create",
   },
 ];
 
