@@ -44,7 +44,7 @@ const SignUp = () => {
     if (session?.user) {
       router.push("/");
     }
-  }, []);
+  }, [router, session?.user]);
   return (
     <div className="md:flex md:h-[86vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-10">

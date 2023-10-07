@@ -40,8 +40,8 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
           const daysLeft = calculateDaysLeft(campaign.endDate);
           return (
             <Link href={`/my-campaigns/${campaign.id}`} key={campaign.id}>
-              <div className=" h-[340px] w-[300px] rounded-t-lg">
-                <div className=" w-[300px] h-[320px] rounded-t-3xl bg-gray-50">
+              <div className=" h-[340px] w-[300px] rounded-t-lg bg-gray-50">
+                <div className=" w-[300px] h-[320px] rounded-t-3xl">
                   <div className="relative w-full h-[50%]">
                     <Image
                       src={campaign.imageSrc}
@@ -56,7 +56,7 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                       N300 raised from N{campaign.goalAmount}
                     </h2>
                     <h2> {daysLeft} Days left</h2>
-                    <Button label="Edit Project" />
+                    <Button label="View Project" />
                   </div>
                 </div>
               </div>

@@ -108,7 +108,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         )}
         {isOpen && (
           <div className="absolute bg-white w-40 p-4 rounded-xl shadow-md overdlow-hidden right-30 top-28 text-sm">
-            <div className="flex flex-col cursor-pointer text-center">
+            <div className="flex flex-col cursor-pointer justify-between items-start space-y-6">
+              <div
+                onClick={() => router.push("/my-campaigns")}
+                className="text-[#015E5F] cursor-pointer"
+              >
+                My Projects
+              </div>
               <div
                 onClick={() => signOut()}
                 className="text-[#015E5F] cursor-pointer"
