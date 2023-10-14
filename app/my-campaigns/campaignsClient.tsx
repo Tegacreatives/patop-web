@@ -35,7 +35,7 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
         {campaigns.map((campaign) => {
           const daysLeft = calculateDaysLeft(campaign.endDate);
           return (
-            <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
+            <div key={campaign.id}>
               <div className=" h-[370px] w-[300px] rounded-lg border border-gray-100">
                 <div className=" w-[280px] pt-3 mx-auto h-[320px] rounded-t-3xl">
                   <div className="relative w-full h-[50%]">
@@ -68,11 +68,14 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                       </div>
                     </div>
 
-                    <Button label="View Project" />
+                    <Button
+                      onClick={() => router.push(`/campaigns/${campaign.id}`)}
+                      label="View Project"
+                    />
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
