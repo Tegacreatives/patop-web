@@ -12,7 +12,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   if (!campaign) {
     return <div>No Campaigns</div>;
   }
-  return <div>Hello</div>;
+  return <div>{campaign.title}</div>;
 };
 
 export default ListingPage;
