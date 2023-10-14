@@ -1,7 +1,7 @@
 import React from "react";
 import { getUserCampaigns } from "../actions/getUserCampaigns";
 import CampaignsClient from "./campaignsClient";
-import CampaignTitle from "./campaignTitle";
+import CampaignTitle from "./CampaignTitle";
 
 const MyCampaigns = async () => {
   const userCampaigns = await getUserCampaigns();
