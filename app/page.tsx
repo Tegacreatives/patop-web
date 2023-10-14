@@ -1,9 +1,8 @@
 import Hero from "@/components/Hero";
 import HeroBanner from "@/components/HeroBanner";
 import Projects from "@/components/Projects";
-import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <Hero />

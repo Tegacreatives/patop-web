@@ -31,10 +31,6 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
   }
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div className="text-4xl font-bold pb-8">My Projects</div>
-        <Button onClick={() => router.push("/create")} label="New campaingn" />
-      </div>
       <div className="grid grid-cols-4 gap-3">
         {campaigns.map((campaign) => {
           const daysLeft = calculateDaysLeft(campaign.endDate);
