@@ -39,7 +39,7 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
         {campaigns.map((campaign) => {
           const daysLeft = calculateDaysLeft(campaign.endDate);
           return (
-            <Link href={`/my-campaigns/${campaign.id}`} key={campaign.id}>
+            <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
               <div className=" h-[370px] w-[300px] rounded-lg border border-gray-100">
                 <div className=" w-[280px] pt-3 mx-auto h-[320px] rounded-t-3xl">
                   <div className="relative w-full h-[50%]">
