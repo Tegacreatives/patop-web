@@ -10,7 +10,7 @@ const Projects: React.FC<ProjectsProps> = async ({ title }) => {
   const campaigns = await getCampaigns();
   return (
     <section className="px-12 py-16">
-      {title && <h1 className="text-2xl">{title}</h1>}
+      {title && <h1 className="text-2xl mb-8">{title}</h1>}
       <CampaignsClient campaigns={campaigns} />
     </section>
   );
