@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { calculateDaysLeft } from "../utils/daysRemaining";
 
 interface ICampaign {
   id: string;
@@ -23,12 +24,6 @@ interface CampaignsClientProps {
 
 const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
   const router = useRouter();
-  function calculateDaysLeft(targetDate: string | number | Date) {
-    const targetDateTime = new Date(targetDate).getTime();
-    const currentDateTime = new Date().getTime();
-    const timeDifference = targetDateTime - currentDateTime;
-    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  }
   return (
     <div>
       <div className="grid grid-cols-4 gap-3">
