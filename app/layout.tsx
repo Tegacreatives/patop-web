@@ -2,11 +2,11 @@ import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-
 import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 import Provider from "./context/client-provider";
 import { getServerSession } from "next-auth";
+
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const font = Montserrat({

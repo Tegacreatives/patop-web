@@ -2,7 +2,7 @@ import CampaignForm from "./CampaignForm";
 
 const CreateCampaign = () => {
   return (
-    <div className="my-10 px-10 md:px-32 ">
+    <div className="py-10 px-10 md:px-32 ">
       <h1 className="text-4xl md:text-6xl text-gray-900 mb-5">
         Create a new Project
       </h1>

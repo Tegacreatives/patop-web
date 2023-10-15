@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Button } from "../button/Button";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -36,9 +36,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [navFixed, setNavFixed] = useState(false);
 
   //Toggles the navigation menu
   const toogleOpen = useCallback(() => {
@@ -46,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   }, []);
   return (
     <div
-      className="flex items-center justify-between py-6 px-10 md:px-20
+      className="flex items-center justify-between py-6 px-10 md:px-20 top-0
       w-full transition-all duration-300 bg-white border-b border-gray-200"
     >
       <div>
