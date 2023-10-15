@@ -45,7 +45,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
     <div className="px-14 pt-12 lg:px-20">
       <h1 className="font-semibold text-3xl text-gray-700">{campaign.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="bg-red-300 md:col-span-2">
+        <div className="md:col-span-2">
           <div className="relative w-full">
             <Image
               src={campaign.imageSrc}
@@ -55,10 +55,6 @@ const ListingPage = async ({ params }: { params: IParams }) => {
               height={800}
               priority
             />
-          </div>
-          <div>
-            <h2 className="font-semibold text-xl">About Project</h2>
-            <p>{campaign.description}</p>
           </div>
         </div>
         <div className="md:col-span-1 space-y-8">
@@ -109,7 +105,12 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           </div>
         </div>
       </div>
-      <div></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="md:col-span-2 py-10">
+          <h2 className="font-semibold text-xl">About Project</h2>
+          <p>{campaign.description}</p>
+        </div>
+      </div>
     </div>
   );
 };
