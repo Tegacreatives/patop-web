@@ -9,27 +9,32 @@ interface IParams {
   campaignId?: string;
 }
 
-const socialShare = [
-  {
-    iconName: "Instagram",
-    iconSrc: "/assets/icons/instagram.png",
-  },
-  {
-    iconName: "Facebook",
-    iconSrc: "/assets/icons/facebook.png",
-  },
-  {
-    iconName: "Linkedin",
-    iconSrc: "/assets/icons/linkedin.png",
-  },
-  {
-    iconName: "Twitter",
-    iconSrc: "/assets/icons/twitter.png",
-  },
-];
-
 const ListingPage = async ({ params }: { params: IParams }) => {
   const campaign = await getCampaignById(params);
+  const shareUrl = `https://patop.vercel.app/campaigns/${campaign?.id}`;
+  const title = campaign?.title;
+  const socialShare = [
+    {
+      iconName: "Instagram",
+      iconSrc: "/assets/icons/instagram.png",
+      shareUrl: `https://www.instagram.com/share?url=${shareUrl}`,
+    },
+    {
+      iconName: "Facebook",
+      iconSrc: "/assets/icons/facebook.png",
+      shareUrl: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+    },
+    {
+      iconName: "Linkedin",
+      iconSrc: "/assets/icons/linkedin.png",
+      shareUrl: `https://www.linkedin.com/shareArticle?url=${shareUrl}&title=${title}`,
+    },
+    {
+      iconName: "Twitter",
+      iconSrc: "/assets/icons/twitter.png",
+      shareUrl: `https://twitter.com/share?url=${shareUrl}&text=${title}`,
+    },
+  ];
   const currentUser = await getCurrentUser();
   if (!campaign) {
     return <div>No Campaigns</div>;
@@ -80,12 +85,18 @@ const ListingPage = async ({ params }: { params: IParams }) => {
             <div className="flex space-x-5">
               {socialShare.map((social, index) => (
                 <div key={index}>
-                  <Image
-                    src={social.iconSrc}
-                    alt={social.iconName}
-                    width={35}
-                    height={35}
-                  />
+                  <a
+                    href={social.shareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src={social.iconSrc}
+                      alt={social.iconName}
+                      width={35}
+                      height={35}
+                    />
+                  </a>
                 </div>
               ))}
             </div>
