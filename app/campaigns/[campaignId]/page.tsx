@@ -9,6 +9,25 @@ interface IParams {
   campaignId?: string;
 }
 
+const socialShare = [
+  {
+    iconName: "Instagram",
+    iconSrc: "/assets/icons/instagram.png",
+  },
+  {
+    iconName: "Facebook",
+    iconSrc: "/assets/icons/facebook.png",
+  },
+  {
+    iconName: "Linkedin",
+    iconSrc: "/assets/icons/linkedin.png",
+  },
+  {
+    iconName: "Twitter",
+    iconSrc: "/assets/icons/twitter.png",
+  },
+];
+
 const ListingPage = async ({ params }: { params: IParams }) => {
   const campaign = await getCampaignById(params);
   const currentUser = await getCurrentUser();
@@ -56,8 +75,20 @@ const ListingPage = async ({ params }: { params: IParams }) => {
             {campaign.category}
           </h2>
           <Button label="Support this project" />
-          <div>
+          <div className="space-y-3">
             <h2>Share on:</h2>
+            <div className="flex space-x-5">
+              {socialShare.map((social, index) => (
+                <div key={index}>
+                  <Image
+                    src={social.iconSrc}
+                    alt={social.iconName}
+                    width={35}
+                    height={35}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
