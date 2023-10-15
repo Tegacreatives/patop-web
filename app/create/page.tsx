@@ -99,7 +99,7 @@ function CreateGigs() {
               id="title"
               {...register("title", { required: true })}
               className={inputClassName}
-              placeholder="e.g. I will do something I'm really good at"
+              placeholder="What is the title of your project"
             />
           </div>
           <div>
