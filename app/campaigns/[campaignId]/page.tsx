@@ -44,16 +44,22 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   return (
     <div className="px-14 pt-12 lg:px-20">
       <h1 className="font-semibold text-3xl text-gray-700">{campaign.title}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:space-x-12 md:col-span-2">
-        <div className="relative w-full">
-          <Image
-            src={campaign.imageSrc}
-            alt={campaign.title}
-            className="rounded-lg py-4 w-full"
-            width={2200}
-            height={800}
-            priority
-          />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="bg-red-300 md:col-span-2">
+          <div className="relative w-full">
+            <Image
+              src={campaign.imageSrc}
+              alt={campaign.title}
+              className="rounded-lg py-4 w-full"
+              width={2200}
+              height={800}
+              priority
+            />
+          </div>
+          <div>
+            <h2 className="font-semibold text-xl">About Project</h2>
+            <p>{campaign.description}</p>
+          </div>
         </div>
         <div className="md:col-span-1 space-y-8">
           {" "}
@@ -103,6 +109,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };
