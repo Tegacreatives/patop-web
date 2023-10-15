@@ -1,4 +1,4 @@
-export function calculateDaysLeft(targetDate: string | number | Date) {
+export function calculateDaysLeft(targetDate: Date) {
   const targetDateTime = new Date(targetDate).getTime();
   const currentDateTime = new Date().getTime();
   const timeDifference = targetDateTime - currentDateTime;
