@@ -82,10 +82,16 @@ const ListingPage = async ({ params }: { params: IParams }) => {
               </h2>
             </div>
           </div>
-          <h2 className="font-semibold text-2xl text-gray-700">
-            Remaing days for this project: {daysLeft}{" "}
-            {daysLeft < 1 ? "days" : "day"}
-          </h2>
+          {daysLeft >= 1 ? (
+            <h2 className="font-semibold text-2xl text-gray-700">
+              Remaing days for this project: {daysLeft}{" "}
+              {daysLeft < 1 ? "days" : "day"}
+            </h2>
+          ) : (
+            <h2 className="font-semibold text-2xl text-red-500">
+              Campaign Period expired!
+            </h2>
+          )}
           <ContributionProgressBar
             totalAmountRaised={campaign.totalAmountRaised}
             remainingAmountNeeded={campaign.remainingAmountNeeded}
