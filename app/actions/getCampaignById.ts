@@ -8,6 +8,15 @@ export default async function getCampaignById(params: IParams) {
   try {
     const { campaignId } = params;
 
+    const uniqueContributorsCount = await prisma.contribution.count({
+      where: {
+        id: campaignId,
+      },
+      select: {
+        backerId: true,
+      },
+    });
+
     const totalAmountRaised = await prisma.contribution.aggregate({
       _sum: {
         amount: true,
@@ -35,6 +44,7 @@ export default async function getCampaignById(params: IParams) {
       campaign.goalAmount - (totalAmountRaised._sum.amount || 0);
 
     return {
+      uniqueContributorsCount: uniqueContributorsCount.backerId,
       totalAmountRaised: totalAmountRaised._sum.amount || 0,
       ...campaign,
       remainingAmountNeeded,

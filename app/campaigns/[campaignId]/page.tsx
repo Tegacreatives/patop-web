@@ -75,7 +75,11 @@ const ListingPage = async ({ params }: { params: IParams }) => {
             <div className="w-[1px] h-8 bg-gray-400"></div>
             <div>
               <h3 className="text-xl font-medium">Backers</h3>
-              <h2 className="text-lg text-gray-600">20+</h2>
+              <h2 className="text-lg text-gray-600">
+                {campaign.uniqueContributorsCount > 20
+                  ? "20+"
+                  : campaign.uniqueContributorsCount}
+              </h2>
             </div>
           </div>
           <h2 className="font-semibold text-2xl text-gray-700">
