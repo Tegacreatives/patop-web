@@ -4,6 +4,7 @@ import getCurrentUser from "../../actions/getCurrentUser";
 import Image from "next/image";
 import { calculateDaysLeft } from "@/app/utils/daysRemaining";
 import { Button } from "@/components/button/Button";
+import ContributionProgressBar from "@/components/contributionProgressBar";
 
 interface IParams {
   campaignId?: string;
@@ -11,7 +12,6 @@ interface IParams {
 
 const ListingPage = async ({ params }: { params: IParams }) => {
   const campaign = await getCampaignById(params);
-  console.log(campaign);
   const shareUrl = `https://patop.vercel.app/campaigns/${campaign?.id}`;
   const title = campaign?.title;
   const socialShare = [
@@ -85,6 +85,10 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           <h2 className="font-semibold text-2xl text-gray-700">
             Remaing days for this project: {daysLeft} days
           </h2>
+          <ContributionProgressBar
+            totalAmountRaised={campaign.totalAmountRaised}
+            remainingAmountNeeded={campaign.remainingAmountNeeded}
+          />
           <h2 className="bg-gray-200 max-w-max px-2 py-1 rounded-xl">
             {campaign.category}
           </h2>
