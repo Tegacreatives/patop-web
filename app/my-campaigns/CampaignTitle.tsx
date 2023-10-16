@@ -9,8 +9,15 @@ const CampaignTitle = () => {
     <div>
       {" "}
       <div className="flex items-center justify-between">
-        <div className="text-4xl font-bold pb-8">My Projects</div>
-        <Button onClick={() => router.push("/create")} label="New campaingn" />
+        <div className="text-2xl md:text-4xl font-bold pb-8 px-10 md:px-0">
+          My Projects
+        </div>
+        <div className="hidden md:block">
+          <Button
+            onClick={() => router.push("/create")}
+            label="New campaingn"
+          />
+        </div>
       </div>
     </div>
   );

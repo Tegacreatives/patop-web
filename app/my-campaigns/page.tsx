@@ -7,7 +7,7 @@ const MyCampaigns = async () => {
   const userCampaigns = await getUserCampaigns();
 
   return (
-    <section className="px-20 py-10">
+    <section className="md:px-20 py-10">
       <CampaignTitle />
       <CampaignsClient campaigns={userCampaigns} />
     </section>
