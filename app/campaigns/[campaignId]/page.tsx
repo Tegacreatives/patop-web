@@ -11,6 +11,7 @@ interface IParams {
 
 const ListingPage = async ({ params }: { params: IParams }) => {
   const campaign = await getCampaignById(params);
+  console.log(campaign);
   const shareUrl = `https://patop.vercel.app/campaigns/${campaign?.id}`;
   const title = campaign?.title;
   const socialShare = [
@@ -62,7 +63,9 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           <div className="flex flex-row items-center justify-between">
             <div>
               <h3 className="text-xl font-medium">Raised</h3>
-              <h2 className="text-lg text-gray-600">N300</h2>
+              <h2 className="text-lg text-gray-600">
+                N{campaign.totalAmountRaised}
+              </h2>
             </div>
             <div className="w-[1px] h-8 bg-gray-400"></div>
             <div>

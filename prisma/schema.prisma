@@ -87,7 +87,7 @@ model Contribution {
   id               String   @id @default(cuid())
   backerId         String
   projectId        String
-  amount           Decimal
+  amount           Float
   contributionDate DateTime
 
   backer  User    @relation(fields: [backerId], references: [id])
