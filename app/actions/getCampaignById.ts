@@ -15,6 +15,7 @@ export default async function getCampaignById(params: IParams) {
       select: {
         backerId: true,
       },
+      distinct: ["backerId"],
     });
 
     const totalAmountRaised = await prisma.contribution.aggregate({
