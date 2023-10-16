@@ -83,7 +83,8 @@ const ListingPage = async ({ params }: { params: IParams }) => {
             </div>
           </div>
           <h2 className="font-semibold text-2xl text-gray-700">
-            Remaing days for this project: {daysLeft} days
+            Remaing days for this project: {daysLeft}{" "}
+            {daysLeft < 1 ? "days" : "day"}
           </h2>
           <ContributionProgressBar
             totalAmountRaised={campaign.totalAmountRaised}
