@@ -15,6 +15,9 @@ interface ICampaign {
   createdAt: Date;
   category: string;
   userId: string;
+  uniqueContributorsCount?: number;
+  remainingAmountNeeded?: number;
+  totalAmountRaised?: number;
 }
 
 interface CampaignsClientProps {
@@ -46,7 +49,10 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                     <div className="flex flex-row items-center justify-between">
                       <div>
                         <h3>Raised</h3>
-                        <h2 className="text-sm text-gray-600">N300</h2>
+                        <h2 className="text-sm text-gray-600">
+                          {" "}
+                          N{campaign.totalAmountRaised}
+                        </h2>
                       </div>
                       <div className="w-[1px] h-8 bg-gray-400"></div>
                       <div>
@@ -58,7 +64,11 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                       <div className="w-[1px] h-8 bg-gray-400"></div>
                       <div>
                         <h3>Backers</h3>
-                        <h2 className="text-sm text-gray-600">20+</h2>
+                        <h2 className="text-sm text-gray-600">
+                          {(campaign.uniqueContributorsCount as number) > 20
+                            ? "20+"
+                            : campaign.uniqueContributorsCount}
+                        </h2>
                       </div>
                     </div>
 
