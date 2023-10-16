@@ -9,10 +9,6 @@ import { signOut } from "next-auth/react";
 
 const Links = [
   {
-    name: "Home",
-    url: "/",
-  },
-  {
     name: "About",
     url: "/about",
   },

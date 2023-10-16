@@ -8,7 +8,6 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = async ({ title }) => {
   const campaigns = await getCampaigns();
-  console.log(campaigns);
 
   const filteredCampaigns = campaigns.filter(
     (campaign) => new Date(campaign.endDate) > new Date()
