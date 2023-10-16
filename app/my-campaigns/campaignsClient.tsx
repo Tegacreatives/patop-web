@@ -15,9 +15,9 @@ interface ICampaign {
   createdAt: Date;
   category: string;
   userId: string;
-  uniqueContributorsCount?: number;
-  remainingAmountNeeded?: number;
-  totalAmountRaised?: number;
+  uniqueContributorsCount: number;
+  remainingAmountNeeded: number;
+  totalAmountRaised: number;
 }
 
 interface CampaignsClientProps {
