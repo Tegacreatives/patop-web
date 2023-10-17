@@ -20,7 +20,7 @@ The journey was not without its challenges. Overcoming technical hurdles, refini
 
 Building a crowdfunding platform for student projects was not just a technical endeavour, it was a journey of building one possible solution to help students raise funds, community-building, and fostering innovation. Over time I will also be adding more features to the application.
 
-Any feedback, feature requests or contributions are not just welcome, but deeply valued and highly appreciated.
+### Any feedback, feature requests or contributions are not just welcome, but deeply valued and highly appreciated.
 
 ### Built with
 
