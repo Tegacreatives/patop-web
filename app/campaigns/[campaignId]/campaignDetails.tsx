@@ -3,10 +3,20 @@ import { ICampaign } from "@/app/types";
 import { calculateDaysLeft } from "@/app/utils/daysRemaining";
 import { Button } from "@/components/button/Button";
 import ContributionProgressBar from "@/components/contributionProgressBar";
+import PaymentModal from "@/components/paymentModal";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const CampaignDetails = ({ campaign }: { campaign: ICampaign }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSupportClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const daysLeft = calculateDaysLeft(campaign.endDate);
 
   const shareUrl = `https://patop.vercel.app/campaigns/${campaign?.id}`;
@@ -75,7 +85,8 @@ const CampaignDetails = ({ campaign }: { campaign: ICampaign }) => {
       <h2 className="bg-gray-200 max-w-max px-2 py-1 rounded-xl">
         {campaign.category}
       </h2>
-      <Button label="Support this project" />
+      <Button onClick={handleSupportClick} label="Support this project" />
+      <PaymentModal onClose={handleCloseModal} isOpen={isModalOpen} />
       <div className="space-y-3">
         <h2>Share on:</h2>
         <div className="flex space-x-5">
