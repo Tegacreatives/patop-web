@@ -12,7 +12,6 @@ async function getBlog(slug: string) {
       query: `
         query Blog($slug: String!) {
             blog(where: {slug: $slug}) {
-                createdAt
                 id
                 slug
                 publishedAt
