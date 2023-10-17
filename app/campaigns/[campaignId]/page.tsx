@@ -22,7 +22,7 @@ const CampaignPage = async ({ params }: { params: IParams }) => {
         <div className="md:col-span-2">
           <div className="relative w-full">
             <Image
-              src={campaign.imageSrc}
+              src={campaign.imageSrc || "/assets/placeholder.png"}
               alt={campaign.title}
               className="rounded-lg py-4 w-full"
               width={2200}

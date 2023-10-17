@@ -37,7 +37,7 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                 <div className="w-[75vw] md:w-[250px] pt-3 mx-auto h-[320px] rounded-t-3xl">
                   <div className="relative w-full h-[50%]">
                     <Image
-                      src={campaign.imageSrc}
+                      src={campaign.imageSrc || "/assets/placeholder.png"}
                       alt={campaign.title}
                       fill
                       className="rounded-xl"
