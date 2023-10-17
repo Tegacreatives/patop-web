@@ -1,6 +1,16 @@
 import CampaignForm from "./CampaignForm";
+import getCurrentUser from "../actions/getCurrentUser";
+import UnauthorizedState from "@/components/UnauthorizedState";
 
-const CreateCampaign = () => {
+const CreateCampaign = async () => {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return (
+      <div className="pt-24">
+        <UnauthorizedState actionTitle="create a campaign" />
+      </div>
+    );
+  }
   return (
     <div className="py-10 px-10 md:px-32 ">
       <h1 className="text-4xl md:text-6xl text-gray-900 mb-5">
