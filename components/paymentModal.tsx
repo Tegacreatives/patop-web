@@ -1,28 +1,51 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "./button/Button";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 interface IPaymentModal {
   onClose: () => void;
   isOpen: boolean;
+  projectId: string;
 }
 
-const PaymentModal = ({ onClose, isOpen }: IPaymentModal) => {
+interface IContibutionsInput {
+  amount: number;
+  email: string;
+  name: string;
+}
+
+const PaymentModal = ({ onClose, isOpen, projectId }: IPaymentModal) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
     setValue,
-  } = useForm();
+  } = useForm<IContibutionsInput>();
 
-  const onSubmit = (data: any) => {
-    // Handle form submission data
-    console.log(data);
-    // Close the modal after form submission (you can customize this behavior)
-    onClose();
+  const onSubmit: SubmitHandler<IContibutionsInput> = (data) => {
+    axios
+      .post("/api/contribute", {
+        ...data,
+        projectId,
+      })
+      .then((response) => {
+        const authorizationUrl = response.data.data.authorization_url;
+        router.push(authorizationUrl);
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        // Close the modal after form submission
+        onClose();
+      });
   };
 
   const donationOptions = [
@@ -36,16 +59,14 @@ const PaymentModal = ({ onClose, isOpen }: IPaymentModal) => {
 
   if (!isOpen) return null;
 
-  const handlePredefinedOptionClick = (value: number) => {
-    setValue("amount", value);
-  };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="modal-overlay fixed inset-0 bg-black opacity-50"></div>
       <div className="modal-content bg-white p-8 rounded shadow-lg z-50">
         <div className="flex items-center justify-between pb-8">
-          <h2 className="text-xl font-semibold">Support this Project</h2>
+          <h2 className="text-xl font-semibold text-[#015E5F]">
+            Support this Project
+          </h2>
           <button onClick={onClose}>
             <AiOutlineClose />
           </button>
@@ -65,7 +86,7 @@ const PaymentModal = ({ onClose, isOpen }: IPaymentModal) => {
               type="text"
               id="name"
               placeholder="Name"
-              {...register("name")}
+              {...register("name", { required: false })}
               className="border border-gray-300 p-2 rounded w-full"
             />
           </div>
@@ -74,7 +95,7 @@ const PaymentModal = ({ onClose, isOpen }: IPaymentModal) => {
               htmlFor="email"
               className="block text-gray-600 font-light mb-1 text-sm"
             >
-              Required
+              Email
             </label>
             <input
               type="email"
@@ -105,8 +126,7 @@ const PaymentModal = ({ onClose, isOpen }: IPaymentModal) => {
                     selectedOption === option.value ? "bg-[#0f4343]" : ""
                   }`}
                   onClick={() => {
-                    handlePredefinedOptionClick(option.value);
-                    setValue("customAmount", option.value);
+                    setValue("amount", option.value);
                   }}
                 >
                   {option.label}

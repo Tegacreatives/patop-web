@@ -86,7 +86,11 @@ const CampaignDetails = ({ campaign }: { campaign: ICampaign }) => {
         {campaign.category}
       </h2>
       <Button onClick={handleSupportClick} label="Support this project" />
-      <PaymentModal onClose={handleCloseModal} isOpen={isModalOpen} />
+      <PaymentModal
+        projectId={campaign.id}
+        onClose={handleCloseModal}
+        isOpen={isModalOpen}
+      />
       <div className="space-y-3">
         <h2>Share on:</h2>
         <div className="flex space-x-5">
