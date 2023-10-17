@@ -14,7 +14,7 @@ const CampaignPage = async ({ params }: { params: IParams }) => {
   if (!campaign) {
     return <div>No Campaigns</div>;
   }
-  console.log(campaign);
+
   return (
     <div className="px-14 pt-12 lg:px-20">
       <h1 className="font-semibold text-3xl text-gray-700">{campaign.title}</h1>

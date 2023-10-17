@@ -37,7 +37,6 @@ const PayemntComplete = ({
         toast.success("You have contributed to this project!");
         router.push(`/campaigns/${contributionData.projectId}`);
       } catch (error) {
-        console.error("Error:", error);
         toast.error("Error processing payment");
       }
     };
