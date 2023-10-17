@@ -31,10 +31,7 @@ const PaymentModal = ({ onClose, isOpen, projectId }: IPaymentModal) => {
 
   const onSubmit: SubmitHandler<IContibutionsInput> = (data) => {
     axios
-      .post("/api/contribute", {
-        ...data,
-        projectId,
-      })
+      .post("/api/contribute", { ...data, projectId })
       .then((response) => {
         const authorizationUrl = response.data.data.authorization_url;
         router.push(authorizationUrl);

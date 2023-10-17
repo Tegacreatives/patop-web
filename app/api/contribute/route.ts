@@ -6,27 +6,29 @@ export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
   const callback = await getCallbackUrl();
 
-  if (!currentUser) {
-    return NextResponse.error();
-  }
-
   const body = await request.json();
-  const { listingId, startDate, endDate, totalPrice } = body;
+  const { amount, email, name, projectId } = body;
+  const generateRandomId = () => {
+    const randomId =
+      Math.random().toString(36).substring(2) + Date.now().toString(36);
+    return randomId;
+  };
+
+  const backerIdAlt = generateRandomId();
   const pay = {
-    email: currentUser.email,
-    amount: totalPrice * 100,
+    email,
+    amount: amount * 100,
     callback_url: callback,
     metadata: {
-      userID: currentUser.id,
-      listingId,
-      startDate,
-      endDate,
+      backerId: backerIdAlt,
+      projectId,
+      amount,
     },
   };
   const res = await fetch("https://api.paystack.co/transaction/initialize", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_SECRET_PAYSTACK_KEY}`,
       Content_Type: "application/json",
     },
     body: JSON.stringify(pay),

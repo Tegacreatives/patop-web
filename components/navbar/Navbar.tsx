@@ -70,11 +70,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         ) : (
           <>
             <Button
-              onClick={() => router.push("login")}
+              onClick={() => router.push("/login")}
               outline
               label="Login"
             />
-            <Button onClick={() => router.push("signup")} label="Sign Up" />
+            <Button onClick={() => router.push("/signup")} label="Sign Up" />
           </>
         )}
         {isOpen && (
