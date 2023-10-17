@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           <Link href="/">Patop</Link>
         </h1>
       </div>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <ul className="flex space-x-10 font-medium text-base">
           {Links.map((link, index) => (
             <li key={index}>
@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           ))}
         </ul>
       </div>
-      <div className="hidden md:block md:space-x-5">
+      <div className="hidden lg:block md:space-x-5">
         {currentUser ? (
           <h1
             onClick={toogleOpen}
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           </div>
         )}
       </div>
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <FiMenu size={30} />
       </div>
     </div>
