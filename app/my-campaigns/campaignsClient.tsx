@@ -45,7 +45,10 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
                   </div>
                   <div className="px-5 pt-3 space-y-3">
                     <h1 className="font-semibold">{campaign.title}</h1>
-                    <h2> {daysLeft} Days left</h2>
+                    <h2>
+                      {" "}
+                      {daysLeft} {daysLeft > 1 ? "Days left" : "Day left"}
+                    </h2>
                     <div className="flex flex-row items-center justify-between">
                       <div>
                         <h3>Raised</h3>
