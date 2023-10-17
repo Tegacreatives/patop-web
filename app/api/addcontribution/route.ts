@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   const project = await prisma.contribution.create({
     data: {
-      amount,
+      amount: amount / 100,
       backerId,
       projectId,
     },

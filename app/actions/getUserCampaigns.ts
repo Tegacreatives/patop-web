@@ -18,7 +18,7 @@ export async function getUserCampaigns() {
       projectsData.map(async (project) => {
         const uniqueContributors = await prisma.contribution.findMany({
           where: {
-            id: project.id,
+            projectId: project.id,
           },
           select: {
             backerId: true,
@@ -34,7 +34,7 @@ export async function getUserCampaigns() {
             amount: true,
           },
           where: {
-            id: project.id,
+            projectId: project.id,
           },
         });
 
