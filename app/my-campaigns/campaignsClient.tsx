@@ -28,13 +28,13 @@ const CampaignsClient = ({ campaigns }: CampaignsClientProps) => {
   const router = useRouter();
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {campaigns.map((campaign) => {
           const daysLeft = calculateDaysLeft(campaign.endDate);
           return (
             <div key={campaign.id} className="mx-auto">
-              <div className=" h-[370px] w-[80vw] md:w-[300px] rounded-lg border border-gray-100">
-                <div className="w-[75vw] md:w-[280px] pt-3 mx-auto h-[320px] rounded-t-3xl">
+              <div className=" h-[370px] px-4 rounded-lg border border-gray-100">
+                <div className="w-[75vw] md:w-[250px] pt-3 mx-auto h-[320px] rounded-t-3xl">
                   <div className="relative w-full h-[50%]">
                     <Image
                       src={campaign.imageSrc}
