@@ -26,19 +26,24 @@ const PayemntComplete = ({
           }
         );
 
-        const apiData = response.data.data.metadata;
+        const apiData = response.data.data;
+        const contributionData = {
+          amount: apiData.amount,
+          backerId: apiData.metadata.backerId,
+          projectId: apiData.metadata.projectId,
+        };
 
-        await axios.post("/api/addcontribution", apiData);
+        await axios.post("/api/addcontribution", contributionData);
         toast.success("You have contributed to this project!");
-        router.push(`/campaigns/${apiData.projectId}`);
+        router.push(`/campaigns/${contributionData.projectId}`);
       } catch (error) {
         console.error("Error:", error);
         toast.error("Error processing payment");
       }
     };
-    // if (reference) {
-    //   fetchData();
-    // }
+    if (reference) {
+      fetchData();
+    }
   }, [reference, router]);
   return (
     <div className="flex flex-col items-center justify-center h-[50vh] text-[#015E5F] px-8 text-center space-y-4">

@@ -22,11 +22,10 @@ model User {
   updatedAt      DateTime  @updatedAt @map(name: "updated_at")
   school         String?
 
-  projects      Project[]
-  accounts      Account[]
-  contributions Contribution[]
-  comments      Comment[]
-  sessions      Session[]
+  projects Project[]
+  accounts Account[]
+  comments Comment[]
+  sessions Session[]
 
   @@map(name: "users")
 }
@@ -90,7 +89,6 @@ model Contribution {
   amount           Float
   contributionDate DateTime @default(now())
 
-  backer  User    @relation(fields: [backerId], references: [id])
   project Project @relation(fields: [projectId], references: [id])
 }
 

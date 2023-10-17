@@ -7,15 +7,13 @@ export async function POST(request: Request) {
 
   const { amount, backerId, projectId } = body;
 
-  //   const project = await prisma.contribution.create({
-  //     data: {
-  //       amount,
-  //       backerId,
-  //       projectId,
-  //     },
-  //   });
+  const project = await prisma.contribution.create({
+    data: {
+      amount,
+      backerId,
+      projectId,
+    },
+  });
 
-  console.log(body);
-
-  return NextResponse.json(body);
+  return NextResponse.json(project);
 }
