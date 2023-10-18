@@ -90,10 +90,10 @@ const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
           </h2>
         </div>
       </div>
-      {daysLeft >= 1 ? (
+      {daysLeft > 1 ? (
         <h2 className="font-semibold text-2xl text-gray-700">
           Remaing days for this project: {daysLeft}{" "}
-          {daysLeft < 1 ? "days" : "day"}
+          {daysLeft == 1 ? "day" : "days"}
         </h2>
       ) : (
         <h2 className="font-semibold text-2xl text-red-500">
