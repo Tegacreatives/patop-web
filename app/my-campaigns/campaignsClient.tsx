@@ -4,21 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { calculateDaysLeft } from "../utils/daysRemaining";
-
-interface ICampaign {
-  id: string;
-  title: string;
-  description: string | null;
-  imageSrc: string;
-  goalAmount: number;
-  endDate: Date;
-  createdAt: Date;
-  category: string;
-  userId: string;
-  uniqueContributorsCount: number;
-  remainingAmountNeeded: number;
-  totalAmountRaised: number;
-}
+import { ICampaign } from "../types";
 
 interface CampaignsClientProps {
   campaigns: ICampaign[];
