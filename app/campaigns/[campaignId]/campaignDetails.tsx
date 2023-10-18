@@ -19,15 +19,15 @@ const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const deleteProject = (id: string) => {
-    axios
+  const deleteProject = async (id: string) => {
+    await axios
       .delete(`/api/campaign/${id}`)
       .then(() => {
         toast.success("Campaign Deleted Successfully");
         router.push("/my-campaigns");
       })
+      .then(() => router.refresh())
       .catch((error) => {
-        console.log(campaign.id);
         toast.error("Could not delete project");
       });
   };
@@ -119,11 +119,6 @@ const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
       ) : (
         <Button onClick={handleSupportClick} label="Support this project" />
       )}
-      <Button
-        deleteButton
-        onClick={() => deleteProject(campaign.id)}
-        label="Delete project"
-      />
       <PaymentModal
         projectId={campaign.id}
         onClose={handleCloseModal}

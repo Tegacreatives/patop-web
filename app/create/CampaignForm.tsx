@@ -74,7 +74,8 @@ const CampaignForm = () => {
     axios
       .post("/api/campaign", data)
       .then(() => toast.success("Project successfully created"))
-      .then(() => router.push("/my-campaigns"));
+      .then(() => router.push("/my-campaigns"))
+      .then(() => router.refresh());
   };
 
   return (

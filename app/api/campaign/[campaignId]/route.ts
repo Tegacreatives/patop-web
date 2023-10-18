@@ -4,7 +4,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prisma";
 
 interface IParams {
-  projectId?: string;
+  campaignId: string;
 }
 
 export async function DELETE(
@@ -17,11 +17,14 @@ export async function DELETE(
     return NextResponse.error();
   }
 
-  const { projectId } = params;
+  const { campaignId } = params;
+  if (!campaignId) {
+    throw new Error("Invalid ID");
+  }
 
   const project = await prisma.project.deleteMany({
     where: {
-      id: projectId,
+      id: campaignId,
       userId: currentUser.id,
     },
   });
