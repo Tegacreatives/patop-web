@@ -44,9 +44,9 @@ type blogType = {
 
 const BlogPage = async () => {
   const blogs: blogType[] = await getCourses();
-  console.log(blogs);
+
   return (
-    <main className="w-full py-10 px-10 md:px-20 mx-auto max-w-[2180px]">
+    <main className="w-full py-10 px-10 md:px-20 mx-auto max-w-[2180px] pb-28 min-h-[80vh]">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 space-y-20 md:space-y-0 mx-auto">
         {blogs.map((blog) => {
           const normalDate = new Date(blog.publishedAt);
