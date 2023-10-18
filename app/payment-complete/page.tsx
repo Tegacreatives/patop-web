@@ -45,7 +45,7 @@ const PayemntComplete = ({
     }
   }, [reference, router]);
   return (
-    <div className="flex flex-col items-center justify-center h-[50vh] text-[#015E5F] px-8 text-center space-y-4">
+    <div className="flex flex-col items-center justify-center h-[50vh] text-[#015E5F] px-8 text-center space-y-4 min-h-[80vh]">
       <h1 className="text-2xl md:text-3xl font-semibold">
         Thank you for making a contribution to this project!
       </h1>

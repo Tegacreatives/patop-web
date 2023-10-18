@@ -1,10 +1,9 @@
 import Hero from "@/components/Hero";
-import HeroBanner from "@/components/HeroBanner";
 import Projects from "@/components/Projects";
 
 export default async function Home() {
   return (
-    <div>
+    <div className="min-h-[80vh]">
       <Hero />
       <Projects title="Top Projects" />
     </div>
