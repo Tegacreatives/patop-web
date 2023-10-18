@@ -72,7 +72,7 @@ const CampaignForm = () => {
 
   const onSubmit: SubmitHandler<IProjectInput> = (data) => {
     axios
-      .post("/api/create", data)
+      .post("/api/campaign", data)
       .then(() => toast.success("Project successfully created"))
       .then(() => router.push("/my-campaigns"));
   };

@@ -4,8 +4,11 @@ import { calculateDaysLeft } from "@/app/utils/daysRemaining";
 import { Button } from "@/components/button/Button";
 import ContributionProgressBar from "@/components/contributionProgressBar";
 import PaymentModal from "@/components/paymentModal";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 interface ICampaignDetails {
   campaign: ICampaign;
@@ -13,7 +16,21 @@ interface ICampaignDetails {
 }
 
 const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const deleteProject = (id: string) => {
+    axios
+      .delete(`/api/campaign/${id}`)
+      .then(() => {
+        toast.success("Campaign Deleted Successfully");
+        router.push("/my-campaigns");
+      })
+      .catch((error) => {
+        console.log(campaign.id);
+        toast.error("Could not delete project");
+      });
+  };
 
   const handleSupportClick = () => {
     setIsModalOpen(true);
@@ -95,13 +112,18 @@ const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
           <Button onClick={handleSupportClick} label="Edit project" />
           <Button
             deleteButton
-            onClick={handleSupportClick}
+            onClick={() => deleteProject(campaign.id)}
             label="Delete project"
           />
         </div>
       ) : (
         <Button onClick={handleSupportClick} label="Support this project" />
       )}
+      <Button
+        deleteButton
+        onClick={() => deleteProject(campaign.id)}
+        label="Delete project"
+      />
       <PaymentModal
         projectId={campaign.id}
         onClose={handleCloseModal}

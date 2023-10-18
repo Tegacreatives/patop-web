@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
         outline
           ? "bg-white text-[#015E5F] border border-[#015E5F]"
           : "bg-[#015E5F] text-white hover:bg-[#017A7A]"
-      } ${deleteButton && "bg-red-500"}`}
+      } ${deleteButton && "bg-red-500 hover:bg-red-400"}`}
       onClick={onClick}
     >
       {label}
