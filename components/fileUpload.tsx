@@ -15,7 +15,6 @@ export const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
   return (
     <div>
       <UploadDropzone
-        className="text-blue-700 hover:text-blue-500"
         endpoint={endpoint}
         onClientUploadComplete={(res) => {
           onChange(res?.[0].url);

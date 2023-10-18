@@ -3,7 +3,6 @@ import { getCallbackUrl } from "@/app/utils/callbackUrl";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const currentUser = await getCurrentUser();
   const callback = await getCallbackUrl();
 
   const body = await request.json();

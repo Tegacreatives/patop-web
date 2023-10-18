@@ -6,6 +6,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 import Provider from "./context/client-provider";
 import { getServerSession } from "next-auth";
+import "@uploadthing/react/styles.css";
 
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 

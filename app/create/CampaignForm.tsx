@@ -32,7 +32,7 @@ const CampaignForm = () => {
       title: "",
       description: "",
       imageSrc: "",
-      goalAmount: 60,
+      goalAmount: 1000,
       endDate: today,
       category: "",
     },
@@ -43,6 +43,7 @@ const CampaignForm = () => {
   const labelClassName = "mb-2 text-lg font-medium text-gray-900";
 
   const [features, setfeatures] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
   const [data, setData] = useState({
     title: "",
     category: "",
@@ -71,6 +72,7 @@ const CampaignForm = () => {
   };
 
   const onSubmit: SubmitHandler<IProjectInput> = (data) => {
+    setIsUploading(true);
     axios
       .post("/api/campaign", data)
       .then(() => toast.success("Project successfully created"))
@@ -95,6 +97,9 @@ const CampaignForm = () => {
             className={inputClassName}
             placeholder="What is the title of your project"
           />
+          {errors.goalAmount && (
+            <span className="text-red-500">Enter your project title</span>
+          )}
         </div>
         <div>
           <label htmlFor="categories" className={labelClassName}>
@@ -111,6 +116,9 @@ const CampaignForm = () => {
               </option>
             ))}
           </select>
+          {errors.category && (
+            <span className="text-red-500">Select a project category</span>
+          )}
         </div>
       </div>
       {/* Project Description */}
@@ -124,6 +132,11 @@ const CampaignForm = () => {
           className="block p-2.5 w-full h-[15rem] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Let the world know about your project"
         ></textarea>
+        {errors.description && (
+          <span className="text-red-500">
+            Write a description about your project
+          </span>
+        )}
       </div>
       <div className="grid grid-cols-2 gap-11">
         {/* Deadline */}
@@ -136,18 +149,26 @@ const CampaignForm = () => {
             // className={inputClassName}
             placeholder="Deadline for the project"
           />
+          {errors.endDate && (
+            <span className="text-red-500">Please set a project deadline</span>
+          )}
         </div>
         {/* Amount Needed */}
         <div>
           <label htmlFor="price" className={labelClassName}>
-            Amount Needed ( $ )
+            Amount Needed ( NGN )
           </label>
           <input
-            {...register("goalAmount", { required: true, min: 1 })}
+            {...register("goalAmount", { required: true, min: 1000 })}
             type="number"
             className={`${inputClassName} w-1/5`}
             placeholder="Enter a price"
           />
+          {errors.goalAmount && (
+            <span className="text-red-500">
+              Please enter a minimum amount of NGN1,000
+            </span>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-11">
@@ -236,7 +257,12 @@ const CampaignForm = () => {
       <div>
         <input
           type="submit"
-          className="border text-lg font-semibold px-5 py-3 mb-20 bg-[#015E5F] text-white rounded-md"
+          className={`border text-lg font-semibold px-5 py-3 mb-20 bg-[#015E5F]
+           text-white rounded-md hover:bg-[#017A7A]
+           ${
+             isUploading ? "bg-[#017A7A] pointer-events-none" : "cursor-pointer"
+           }
+           `}
         />
       </div>
     </form>
