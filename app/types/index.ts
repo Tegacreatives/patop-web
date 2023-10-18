@@ -5,7 +5,6 @@ export interface ICampaign {
   imageSrc: string;
   goalAmount: number;
   endDate: Date;
-  createdAt: Date;
   category: string;
   userId: string;
   uniqueContributorsCount: number;

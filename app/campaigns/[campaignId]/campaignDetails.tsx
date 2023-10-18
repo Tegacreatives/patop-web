@@ -1,5 +1,5 @@
 "use client";
-import { ICampaign } from "@/app/types";
+import { ICampaign, IUser } from "@/app/types";
 import { calculateDaysLeft } from "@/app/utils/daysRemaining";
 import { Button } from "@/components/button/Button";
 import ContributionProgressBar from "@/components/contributionProgressBar";
@@ -7,7 +7,12 @@ import PaymentModal from "@/components/paymentModal";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const CampaignDetails = ({ campaign }: { campaign: ICampaign }) => {
+interface ICampaignDetails {
+  campaign: ICampaign;
+  user?: IUser | null;
+}
+
+const CampaignDetails = ({ campaign, user }: ICampaignDetails) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSupportClick = () => {
@@ -85,7 +90,18 @@ const CampaignDetails = ({ campaign }: { campaign: ICampaign }) => {
       <h2 className="bg-gray-200 max-w-max px-2 py-1 rounded-xl">
         {campaign.category}
       </h2>
-      <Button onClick={handleSupportClick} label="Support this project" />
+      {user && user.id == campaign.userId ? (
+        <div className="flex items-center justify-between">
+          <Button onClick={handleSupportClick} label="Edit project" />
+          <Button
+            deleteButton
+            onClick={handleSupportClick}
+            label="Delete project"
+          />
+        </div>
+      ) : (
+        <Button onClick={handleSupportClick} label="Support this project" />
+      )}
       <PaymentModal
         projectId={campaign.id}
         onClose={handleCloseModal}

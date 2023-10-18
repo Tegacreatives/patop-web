@@ -1,8 +1,8 @@
 import React from "react";
 import getCampaignById from "../../actions/getCampaignById";
 import Image from "next/image";
-import { calculateDaysLeft } from "@/app/utils/daysRemaining";
 import CampaignDetails from "./campaignDetails";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 interface IParams {
   campaignId?: string;
@@ -10,6 +10,7 @@ interface IParams {
 
 const CampaignPage = async ({ params }: { params: IParams }) => {
   const campaign = await getCampaignById(params);
+  const currentUser = await getCurrentUser();
 
   if (!campaign) {
     return <div>No Campaigns</div>;
@@ -31,7 +32,7 @@ const CampaignPage = async ({ params }: { params: IParams }) => {
             />
           </div>
         </div>
-        <CampaignDetails campaign={campaign} />
+        <CampaignDetails user={currentUser} campaign={campaign} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2 py-10">

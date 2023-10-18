@@ -4,6 +4,7 @@ import React from "react";
 interface ButtonProps {
   label: string;
   outline?: boolean;
+  deleteButton?: boolean;
   onClick?: () => void;
   fixedButton?: boolean;
 }
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   onClick,
   fixedButton,
+  deleteButton,
 }) => {
   return (
     <button
@@ -26,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
         outline
           ? "bg-white text-[#015E5F] border border-[#015E5F]"
           : "bg-[#015E5F] text-white hover:bg-[#017A7A]"
-      } ${fixedButton && "border-white"}`}
+      } ${deleteButton && "bg-red-500"}`}
       onClick={onClick}
     >
       {label}
