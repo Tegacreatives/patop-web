@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import "@uploadthing/react/styles.css";
 
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import Footer from "@/components/footer/Footer";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <Navbar currentUser={currentUser} />
         <Provider session={session}>{children}</Provider>
+        <Footer />
       </body>
     </html>
   );

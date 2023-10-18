@@ -7,7 +7,7 @@ import { FiMenu } from "react-icons/fi";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 
-const Links = [
+export const Links = [
   {
     name: "About",
     url: "/about",
