@@ -139,7 +139,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 Sign out
               </div>
             ) : (
-              <div className="space-y-6">
+              <div className="flex flex-col space-y-4">
                 <Button
                   onClick={() => router.push("/login")}
                   outline
