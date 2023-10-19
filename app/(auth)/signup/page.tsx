@@ -46,7 +46,7 @@ const SignUp = () => {
     }
   }, [router, session?.user]);
   return (
-    <div className="md:flex md:h-[86vh]">
+    <div className="md:flex md:min-h-[87vh]">
       <div className=" md:w-[50vw] p-14 md:px-36 md:py-10">
         <div className="relative flex flex-col items-center justify-center overflow-hidden">
           <div className="w-full lg:max-w-xl">
