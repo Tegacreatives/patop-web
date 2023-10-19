@@ -1,8 +1,12 @@
 # A Crowdfunding application for students
 
+![Patop 1](https://github.com/Tegacreatives/patop-web/blob/main/public/assets/patop1.jpg?raw=true)
+
 ## Technological Foundation:
 
 Building a robust crowdfunding platform required careful consideration of technologies. I opted for Next.js 13 as a full stack framework for its seamless user experience and React Hook Form for intuitive form handling. Prisma schema was meticulously designed to define database models, ensuring efficient data management. For real-time interactivity, I utilised Next.js API route to facilitate smooth communication between the server and the client and GraphQL API to connect Hygraph as a backend CMS for blog articles.
+
+![Patop 3](https://github.com/Tegacreatives/patop-web/blob/main/public/assets/patop3.jpg?raw=true)
 
 ## Empowering Student Entrepreneurs:
 
