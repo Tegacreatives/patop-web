@@ -11,7 +11,7 @@ const UnauthorizedState: React.FC<EmptyStateProps> = ({ actionTitle }) => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col space-y-4 items-center justify-center min-h-[70vh]">
+    <div className="flex flex-col space-y-4 items-center justify-center min-h-[90vh] md:min-h-[70vh]">
       <h1 className="text-2xl font-medium">Please login to {actionTitle} </h1>
       <Button label="Login" onClick={() => router.push("/login")} />
     </div>
