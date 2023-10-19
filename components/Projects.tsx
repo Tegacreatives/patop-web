@@ -13,8 +13,8 @@ const Projects: React.FC<ProjectsProps> = async ({ title }) => {
     (campaign) => new Date(campaign.endDate) > new Date()
   );
   return (
-    <section className="px-12 py-16 max-w-[2180px] mx-auto">
-      {title && <h1 className="text-2xl mb-8">{title}</h1>}
+    <section className=" md:px-16 py-16 max-w-[2180px] mx-auto">
+      {title && <h1 className="text-2xl mb-8 px-8 md:px-5">{title}</h1>}
       <CampaignsClient campaigns={filteredCampaigns} />
     </section>
   );
