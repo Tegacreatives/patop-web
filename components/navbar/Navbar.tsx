@@ -139,7 +139,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 Sign out
               </div>
             ) : (
-              <>
+              <div className="space-y-6">
                 <Button
                   onClick={() => router.push("/login")}
                   outline
@@ -149,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                   onClick={() => router.push("/signup")}
                   label="Sign Up"
                 />
-              </>
+              </div>
             )}
           </div>
         </div>
