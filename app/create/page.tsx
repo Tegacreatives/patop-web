@@ -5,11 +5,7 @@ import UnauthorizedState from "@/components/UnauthorizedState";
 const CreateCampaign = async () => {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return (
-      <div className="pt-24">
-        <UnauthorizedState actionTitle="create a campaign" />
-      </div>
-    );
+    return <UnauthorizedState actionTitle="create a campaign" />;
   }
   return (
     <div className="py-10 px-10 md:px-32 ">
